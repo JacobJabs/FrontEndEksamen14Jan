@@ -36,7 +36,9 @@ export default function LoggedIn() {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    facade.fetchSpell(id).then(res => setData(res));
+    facade.fetchMoviesAmount(id).then(res => {
+      setData(res);
+    });
     //facade.fetchData().then(res => setData(res));
   }, [id]);
 

@@ -6,8 +6,10 @@ import {
   Switch
 } from "react-router-dom";
 import facade from "./apiFacade";
-import DND from "./components/DND";
+import AMOUNT from "./components/AMOUNT";
 import Home from "./components/Home";
+import MOV from "./components/MOV";
+import MOVA from "./components/MOVA";
 
 class LogIn extends Component {
   constructor(props) {
@@ -24,6 +26,8 @@ class LogIn extends Component {
   render() {
     return (
       <div>
+        <HeaderNotLoggedIn />
+        <ContentNotLoggedIn />
         <h2>Login</h2>
         <form onSubmit={this.login} onChange={this.onChange}>
           <input placeholder="User Name" id="username" />
@@ -97,7 +101,9 @@ class App extends Component {
     return (
       <div>
         {!this.state.loggedIn ? (
-          <LogIn login={this.login} />
+          <Router>
+            <LogIn login={this.login} />
+          </Router>
         ) : (
           <Router>
             <div>
@@ -121,8 +127,35 @@ const Header = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink activeClassName="active" to="/DND">
-          Dungeons and Dragon
+        <NavLink activeClassName="active" to="/MOV">
+          Movies
+        </NavLink>
+      </li>
+      <li>
+        <NavLink activeClassName="active" to="/MOVA">
+          Ratings
+        </NavLink>
+      </li>
+      <li>
+        <NavLink activeClassName="active" to="/AMOUNT">
+          Amount
+        </NavLink>
+      </li>
+    </ul>
+  );
+};
+
+const HeaderNotLoggedIn = () => {
+  return (
+    <ul className="header">
+      <li>
+        <NavLink exact activeClassName="active" to="/">
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink activeClassName="active" to="/MOV">
+          Movies
         </NavLink>
       </li>
     </ul>
@@ -136,9 +169,32 @@ const Content = () => {
         {" "}
         <Home />{" "}
       </Route>
-      <Route path="/DND">
+      <Route path="/MOV">
         {" "}
-        <DND />{" "}
+        <MOV />{" "}
+      </Route>
+      <Route path="/MOVA">
+        {" "}
+        <MOVA />{" "}
+      </Route>
+      <Route path="/AMOUNT">
+        {" "}
+        <AMOUNT />{" "}
+      </Route>
+    </Switch>
+  );
+};
+
+const ContentNotLoggedIn = () => {
+  return (
+    <Switch>
+      <Route exact path="/">
+        {" "}
+        <Home />{" "}
+      </Route>
+      <Route path="/MOV">
+        {" "}
+        <MOV />{" "}
       </Route>
     </Switch>
   );
