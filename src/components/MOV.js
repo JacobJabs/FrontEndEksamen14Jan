@@ -42,7 +42,7 @@ export default function LoggedIn() {
 
   return (
     <div>
-      <h2>Data Received from server</h2>
+      <h2>Movies Received from server</h2>
       <div>
         <input
           id="id"
